@@ -1,5 +1,5 @@
-#ifndef SERVER_H
-#define SERVER_H
+#ifndef SERVER_HTTP_H
+#define SERVER_HTTP_H
 
 #include "http/utility.h"
 
@@ -721,4 +721,4 @@ namespace SimpleWeb {
   };
 } // namespace SimpleWeb
 
-#endif /* SERVER_H */
+#endif /* SERVER_HTTP_H */

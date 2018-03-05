@@ -1,5 +1,5 @@
-#ifndef CLIENT_H
-#define CLIENT_H
+#ifndef CLIENT_HTTP_H
+#define CLIENT_HTTP_H
 
 #include "http/utility.h"
 
@@ -690,4 +690,4 @@ namespace SimpleWeb {
   };
 } // namespace SimpleWeb
 
-#endif /* CLIENT_H */
+#endif /* CLIENT_HTTP_H */

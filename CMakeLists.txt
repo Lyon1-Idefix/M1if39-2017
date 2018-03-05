@@ -9,6 +9,7 @@ include_directories("tcp/include")
 
 add_subdirectory(process)
 add_subdirectory(http)
+add_subdirectory(ws)
 add_subdirectory(tcp)
 
 find_package(OpenCV REQUIRED)
