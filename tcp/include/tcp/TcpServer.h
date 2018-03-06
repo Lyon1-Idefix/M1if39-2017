@@ -12,7 +12,7 @@ class TcpServerInternal;
 class TcpServer
 {
 public:
-	TcpServer(int port);
+	TcpServer(int port, bool noClientThread = false);
     
 	int Reserve ();
 	int Release ();

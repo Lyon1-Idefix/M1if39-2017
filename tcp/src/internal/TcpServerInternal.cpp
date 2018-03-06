@@ -10,12 +10,13 @@
  * 
  */
 
-TcpServerInternal::TcpServerInternal(TcpServer* server, int port) :
+TcpServerInternal::TcpServerInternal(TcpServer* server, int port,bool noClientThread) :
     mServer(server),
 	mPort ( port ),
     mSocket ( -1 ),
     mReady(false),
-    mRunning(false)
+    mRunning(false),
+    mNoClientThread(noClientThread)
 {
 }
 
@@ -134,7 +135,7 @@ int TcpServerInternal::removeClient (TcpRegisteredClient* client)
 int TcpServerInternal::addClient(int sock)
 {
     DEBUGCALL;
-    TcpRegisteredClient* client = new TcpRegisteredClient(mServer,sock);
+    TcpRegisteredClient* client = new TcpRegisteredClient(mServer,sock,mNoClientThread);
     if ( OnConnect ( client ) == 0 )
     {
         mRegisteredClients.push_back(client);

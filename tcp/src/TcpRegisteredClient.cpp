@@ -5,9 +5,9 @@
  * 
  */
 
-TcpRegisteredClient::TcpRegisteredClient(TcpServer* srv,Socket socket)
+TcpRegisteredClient::TcpRegisteredClient(TcpServer* srv,Socket socket,bool noThread)
 {
-    mInternal = new TcpRegisteredClientInternal ( this, srv, socket );
+    mInternal = new TcpRegisteredClientInternal ( this, srv, socket, noThread );
 }
 
 TcpRegisteredClient::~TcpRegisteredClient()

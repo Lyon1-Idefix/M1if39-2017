@@ -7,11 +7,12 @@
  * 
  */
 
-TcpRegisteredClientInternal::TcpRegisteredClientInternal(TcpRegisteredClient* client,TcpServer* srv,Socket socket) :
+TcpRegisteredClientInternal::TcpRegisteredClientInternal(TcpRegisteredClient* client,TcpServer* srv,Socket socket,bool noThread) :
     mError(false),
     mSocket ( socket ),
     mClient ( client ),
-    mServer ( srv )
+    mServer ( srv ),
+    mNoThread ( noThread )
 {
     DEBUGCALL;
 }
@@ -46,16 +47,22 @@ int TcpRegisteredClientInternal::Receive(char* message, int& length)
 int TcpRegisteredClientInternal::Start()
 {
     DEBUGCALL;
-    mListenerTask = new TcpClientListener(this);
-    mListenerTask->start ();
+	if ( ! mNoThread )
+	{
+        mListenerTask = new TcpClientListener(this);
+        mListenerTask->start ();
+    }
     return TCP_NO_ERROR;
 }
 
 int TcpRegisteredClientInternal::Stop()
 {
     DEBUGCALL;
-    mListenerTask->stop ();
-    delete mListenerTask;
+	if ( ! mNoThread )
+	{
+        mListenerTask->stop ();
+        delete mListenerTask;
+    }
     close(mSocket.GetSocket());
     return TCP_NO_ERROR;
 }

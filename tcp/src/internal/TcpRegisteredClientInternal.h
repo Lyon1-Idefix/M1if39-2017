@@ -13,7 +13,7 @@ public:
     ~TcpRegisteredClientInternal ();
     int Send(const char* message, const int length);
     int Receive(char* message, int& length);
-    TcpRegisteredClientInternal(TcpRegisteredClient* client,TcpServer* srv,Socket socket);
+    TcpRegisteredClientInternal(TcpRegisteredClient* client,TcpServer* srv,Socket socket,bool noThread = false);
     int Start ();
     int Stop ();
     inline Socket ConnectedSocket () { return mSocket; }
@@ -25,6 +25,7 @@ public:
     TcpRegisteredClient* mClient;
     TcpServer* mServer;
     TcpClientListener* mListenerTask;
+    bool mNoThread;
 };
 
 #endif

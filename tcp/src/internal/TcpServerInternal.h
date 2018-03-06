@@ -11,7 +11,7 @@ class TcpRegisteredClient;
 class TcpServerInternal
 {
 public:
-	TcpServerInternal(TcpServer* server, int port);
+	TcpServerInternal(TcpServer* server, int port,bool noClientThread = false);
 	int Reserve ();
 	int Release ();
     int Start ();
@@ -35,6 +35,7 @@ public:
 	bool mRunning;
     TcpConnectionListener* mConnectionTask;
     std::vector<TcpRegisteredClient*> mRegisteredClients;
+    bool mNoClientThread;
     friend class TcpConnectionListener;
 };
 

@@ -6,9 +6,9 @@
  * 
  */
 
-TcpServer::TcpServer(int port)
+TcpServer::TcpServer(int port, bool noClientThread)
 {
-    mInternal = new TcpServerInternal ( this, port );
+    mInternal = new TcpServerInternal ( this, port, noClientThread );
 }
 
 int TcpServer::Reserve()

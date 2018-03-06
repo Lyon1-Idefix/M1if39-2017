@@ -17,7 +17,7 @@ public:
     bool HasError ();
 protected:
     inline TcpRegisteredClientInternal* Internal() { return mInternal; }
-    TcpRegisteredClient(TcpServer* srv,Socket socket);
+    TcpRegisteredClient(TcpServer* srv,Socket socket,bool noThread = false);
 private:
     TcpRegisteredClientInternal* mInternal;
     friend class TcpServer;
