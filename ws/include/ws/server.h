@@ -1,8 +1,8 @@
 #ifndef SERVER_WS_H
 #define SERVER_WS_H
 
-#include "ws/crypto.h"
-#include "ws/utility.h"
+#include "web/crypto.h"
+#include "web/utility.h"
 
 #include <array>
 #include <atomic>

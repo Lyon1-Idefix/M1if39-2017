@@ -27,6 +27,7 @@ target_include_directories(simple-web-server INTERFACE ${CMAKE_CURRENT_SOURCE_DI
 
 find_package(Threads REQUIRED)
 target_link_libraries(simple-web-server INTERFACE ${CMAKE_THREAD_LIBS_INIT})
+target_link_libraries(simple-web-server INTERFACE simple-web)
 
 # TODO 2020 when Debian Jessie LTS ends:
 # Remove Boost system, thread, regex components; use Boost::<component> aliases; remove Boost target_include_directories
@@ -63,12 +64,14 @@ if(OPENSSL_FOUND)
 endif()
 
 add_executable(http-server tests/http-server.cpp)
+target_link_libraries(http-server simple-web)
 target_link_libraries(http-server simple-web-server)
 find_package(Boost 1.53.0 COMPONENTS system thread filesystem REQUIRED)
 target_link_libraries(http-server ${Boost_LIBRARIES})
 target_include_directories(http-server PRIVATE ${Boost_INCLUDE_DIR})
 
 add_executable(http-client tests/http-client.cpp)
+target_link_libraries(http-client simple-web)
 target_link_libraries(http-client simple-web-server)
 find_package(Boost 1.53.0 COMPONENTS system thread filesystem REQUIRED)
 target_link_libraries(http-client ${Boost_LIBRARIES})

@@ -1,7 +1,7 @@
 #ifndef CLIENT_HTTP_H
 #define CLIENT_HTTP_H
 
-#include "http/utility.h"
+#include "web/utility.h"
 
 #include <limits>
 #include <mutex>

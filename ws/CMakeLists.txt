@@ -27,6 +27,7 @@ target_include_directories(simple-websocket-server INTERFACE ${CMAKE_CURRENT_SOU
 
 find_package(Threads REQUIRED)
 target_link_libraries(simple-websocket-server INTERFACE ${CMAKE_THREAD_LIBS_INIT})
+target_link_libraries(simple-websocket-server INTERFACE simple-web)
 
 # TODO 2020 when Debian Jessie LTS ends:
 # Remove Boost system, thread, regex components; use Boost::<component> aliases; remove Boost target_include_directories
@@ -60,12 +61,14 @@ target_link_libraries(simple-websocket-server INTERFACE ${OPENSSL_LIBRARIES})
 target_include_directories(simple-websocket-server INTERFACE ${OPENSSL_INCLUDE_DIR})
 
     add_executable(ws-server tests/ws-server.cpp)
+    target_link_libraries(ws-server simple-web)
     target_link_libraries(ws-server simple-websocket-server)
     find_package(Boost 1.54.0 COMPONENTS system thread filesystem REQUIRED)
     target_link_libraries(ws-server ${Boost_LIBRARIES})
     target_include_directories(ws-server PRIVATE ${Boost_INCLUDE_DIR})
 
     add_executable(ws-client tests/ws-client.cpp)
+    target_link_libraries(ws-client simple-web)
     target_link_libraries(ws-client simple-websocket-server)
     find_package(Boost 1.54.0 COMPONENTS system thread filesystem REQUIRED)
     target_link_libraries(ws-client ${Boost_LIBRARIES})
